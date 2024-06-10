@@ -13,6 +13,12 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
+.postagem{
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 h1 {
   font-size: 26px;
   font-weight: 700;
@@ -79,13 +85,15 @@ ul {
   padding: 15px;
   background-color: #FFF;
   border-radius: 2px;
-  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.15);
 }
 
 .container {
   width: 90%;
   max-width: 900px;
+  height: 45vh;
   margin: 50px auto 100px;
+  background-color: rgba(255, 255, 255, 0.75);
 }
 
 .response-group {
@@ -208,15 +216,7 @@ ul {
 
 .post-group {
   margin-left: 3.5rem;
-}
-
-.post {
-  position: relative;
-  padding: 15px 15px 0 80px;
-  margin-bottom: 50px;
-  border: 1px solid #ebeff1;
-  border-bottom: none;
-  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.15);
+  margin-right: 3.5rem;
 }
 
 .post__author {
@@ -262,6 +262,7 @@ ul {
 }
 .post__actions .button:not(.comment-trigger):hover.button--approve, .post__actions .button:not(.comment-trigger).active.button--approve {
   color: #5fbc71;
+  
 }
 .post__actions .button:not(.comment-trigger):hover.button--deny, .post__actions .button:not(.comment-trigger).active.button--deny {
   color: #f26f54;
@@ -305,7 +306,7 @@ ul {
   height: 100%;
   padding: 15px 15px 15px 65px;
 }
-.comment-form textarea {
+.comment-form input {
   width: 100%;
   height: 4em;
   margin-bottom: 10px;
@@ -314,7 +315,7 @@ ul {
   border-radius: 2px;
   box-shadow: 0 1px 1px #ebeff1 inset;
 }
-.comment-form textarea:focus {
+.comment-form input:focus {
   outline: none;
 }
 
