@@ -19,6 +19,15 @@ html {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+#displayArea {
+  margin-top: 20px;
+  font-size: 1.5em;
+  color: #333;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
 h1 {
   font-size: 26px;
   font-weight: 700;
