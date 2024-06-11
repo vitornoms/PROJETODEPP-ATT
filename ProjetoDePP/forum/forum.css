@@ -26,6 +26,18 @@ html {
   height: 50px;
   width: 50px;
   border-radius: 50%;
+  position: relative;
+  display: inline-block;
+  width: initial;
+  height: 35px;
+  padding: 0 10px;
+  margin-left: 15px;
+  background-color: white;
+  color: #000000;
+  line-height: 35px;
+  text-align: center;
+  border-radius: 2px;
+  border: 1px solid #89989c;
 }
 
 h1 {
@@ -100,7 +112,7 @@ ul {
 .container {
   width: 90%;
   max-width: 900px;
-  height: 45vh;
+  height: 80vh;
   margin: 50px auto 100px;
   background-color: rgba(255, 255, 255, 0.75);
 }
