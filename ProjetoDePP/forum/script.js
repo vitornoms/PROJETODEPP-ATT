@@ -22,5 +22,6 @@ button.onclick = async function() {
 
 document.getElementById('handleSubmit').addEventListener('click', function() {
     var textInput = document.getElementById('title').value;
-    document.getElementById('displayArea').innerText = textInput;
+    document.getElementById('messages').innerText = textInput;
 });
+
