@@ -32,12 +32,15 @@ html {
   height: 35px;
   padding: 0 10px;
   margin-left: 15px;
-  background-color: white;
   color: #000000;
   line-height: 35px;
   text-align: center;
   border-radius: 2px;
   border: 1px solid #89989c;
+  background-color: #fff;
+  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 h1 {
