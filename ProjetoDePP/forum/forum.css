@@ -13,6 +13,11 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
+header h2{
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
 .postagem{
   font-size: 20px;
   margin-bottom: 20px;
@@ -27,8 +32,6 @@ html {
   border-radius: 5px;
   margin-top: 5vh;
 }
-
-
 
 h1 {
   font-size: 26px;
@@ -100,10 +103,9 @@ ul {
 }
 
 .container {
-  width: 90%;
   max-width: 900px;
-  height: 80vh;
-  margin: 50px auto 100px;
+  margin: 0 auto;
+  padding: 20px;
   background-color: rgba(255, 255, 255, 0.75);
 }
 
@@ -114,6 +116,7 @@ ul {
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.15);
+  margin-bottom: 20px;
 }
 .response-group > header {
   position: absolute;
@@ -226,8 +229,7 @@ ul {
 }
 
 .post-group {
-  margin-left: 3.5rem;
-  margin-right: 3.5rem;
+  margin-top: 20px;
 }
 
 .post__author {
@@ -352,6 +354,7 @@ ul {
 .comment-form .comment-form__actions .button--light {
   border-color: transparent;
   color: #89989c;
+  font-size: 23px;
 }
 .comment-form .comment-form__actions .button--light:hover {
   background-color: #89989c;
@@ -368,4 +371,21 @@ ul {
   display: block;
   margin-top: 40px;
   border-top: 1px solid #cdd7dc;
+}
+
+.delete-button {
+  font-size: 20px; /* Tamanho do emoji */
+  background-color: transparent; /* Fundo transparente */
+  border: none; /* Sem borda */
+  cursor: pointer; /* Cursor pointer ao passar o mouse */
+  margin-left: auto; /* Empurra o botão para o lado direito */
+}
+
+.message-item {
+  display: flex; /* Exibir como flexbox para alinhamento do texto e botão */
+  align-items: center; /* Alinhar verticalmente os itens */
+  margin-bottom: 10px; /* Espaçamento entre as mensagens */
+  padding: 10px; /* Adicionar padding */
+  border: 1px solid #ccc; /* Adicionar borda */
+  border-radius: 5px; /* Bordas arredondadas */
 }
