@@ -1,19 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Madimi+One&display=swap");
 
-*{
+* {
 	margin: 0;
 	padding: 0;
 	font-family: 'Madimi One';
 }
 
-body{
+body {
 	background-color: white;
 	height: 100vh;
 	background-size: cover;
 	background-position: center;
 }
 
-header{
+header {
 	width: 100%;
 	height: 10%;
 	display: flex;
@@ -22,12 +22,12 @@ header{
 	background-color: rgb(31, 101, 180);
 }
 
-.logo{
+.logo {
 	height: 8vh;
 	margin-left: 10vh;
 }
 
-.btn{
+.btn {
 	background-color: white;
 	border: 1px solid #fff;
 	padding: 15px 20px;
@@ -39,24 +39,24 @@ header{
 	margin-right: 10vh;
 }
 
-.btn:hover{
+.btn:hover {
 	background-color: #fff;
 	color: #000;
 }
 
-.title{
+.title {
 	display: flex;
 	justify-content: left;
 	margin-left: 15vh;
 	margin-top: 8vh;
 }
 
-.title h1{
+.title h1 {
 	color: black;
 	font-size: 75px;
 }
 
-.resumo{
+.resumo {
 	color: black;
 	font-size: 40px;
 	width: 40%;
@@ -64,7 +64,7 @@ header{
 	margin-top: 5vh;
 }
 
-.circle{
+.circle {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -72,4 +72,80 @@ header{
 	height: 100%;
 	background: rgb(20, 117, 182);
 	clip-path: circle(600px at right 800px);
+}
+
+/* Media Queries for Responsiveness */
+
+@media (max-width: 1200px) {
+	.title h1 {
+		font-size: 60px;
+	}
+	.resumo {
+		font-size: 35px;
+		width: 50%;
+	}
+}
+
+@media (max-width: 992px) {
+	header {
+		flex-direction: column;
+		height: auto;
+	}
+	.logo {
+		margin-left: 0;
+		margin-bottom: 10px;
+	}
+	.btn {
+		margin: 10px 0;
+		padding: 10px 15px;
+		font-size: 16px;
+	}
+	.title {
+		margin-left: 5vh;
+		margin-top: 5vh;
+	}
+	.title h1 {
+		font-size: 50px;
+	}
+	.resumo {
+		font-size: 30px;
+		width: 70%;
+		margin-left: 5vh;
+	}
+}
+
+@media (max-width: 768px) {
+	.title h1 {
+		font-size: 40px;
+	}
+	.resumo {
+		font-size: 25px;
+		width: 80%;
+	}
+}
+
+@media (max-width: 576px) {
+	header {
+		padding: 10px;
+	}
+	.btn {
+		margin-right: 0;
+		padding: 10px 10px;
+		font-size: 14px;
+	}
+	.title {
+		justify-content: center;
+		margin-left: 0;
+		margin-top: 3vh;
+	}
+	.title h1 {
+		font-size: 35px;
+		text-align: center;
+	}
+	.resumo {
+		font-size: 20px;
+		width: 90%;
+		margin: 2vh auto;
+		text-align: center;
+	}
 }

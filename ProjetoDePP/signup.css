@@ -10,8 +10,7 @@ body {
   background-color: #3371ac60;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed
-  
+  background-attachment: fixed;
 }
 
 .container {
@@ -29,13 +28,13 @@ body {
   width: 400px;
 }
 
-h1{
+h1 {
   text-align: center;
   margin-bottom: 20px;
-  color: #0d009c
+  color: #0d009c;
 }
 
-.label-float input{
+.label-float input {
   width: 100%;
   padding: 5px 5px;
   display: inline-block;
@@ -47,23 +46,22 @@ h1{
   font-size: 16px;
   transition: all .3s ease-out;
   border-radius: 0;
-  
 }
 
-.label-float{
+.label-float {
   position: relative;
   padding-top: 13px;
   margin-top: 5%;
   margin-bottom: 5%;
 }
 
-.label-float input:focus{
+.label-float input:focus {
   border-bottom: 2px solid #4038a0;
 }
 
-.label-float label{
+.label-float label {
   color: #0d009c;
-  pointer-event: none;
+  pointer-events: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -72,13 +70,13 @@ h1{
 }
 
 .label-float input:focus + label,
-.label-float input:valid + label{
+.label-float input:valid + label {
   font-size: 13px;
   margin-top: 0;
-  color: #4038a0
+  color: #4038a0;
 }
 
-button{
+button {
   background-color: transparent;
   border-color: #0d009c;
   color: #0d009c;
@@ -92,17 +90,17 @@ button{
   transition: all .4s ease-out;
 }
 
-button:hover{
+button:hover {
   background-color: #0d009c;
   color: #fff;
 }
 
-.justify-center{
+.justify-center {
   display: flex;
   justify-content: center;
 }
 
-.fa-eye{
+.fa-eye {
   position: absolute;
   top: 15px;
   right: 10px;
@@ -110,7 +108,7 @@ button:hover{
   color: #0d009c;
 }
 
-#msgError{
+#msgError {
   text-align: center;
   color: #ff0000;
   background-color: #ffbbbb;
@@ -119,11 +117,66 @@ button:hover{
   display: none;
 }
 
-#msgSuccess{
+#msgSuccess {
   text-align: center;
   color: #00bb00;
   background-color: #bbffbe;
   padding: 10px;
   border-radius: 4px;
   display: none;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .container {
+    margin-top: 50px;
+  }
+  
+  .card {
+    padding: 20px;
+    width: 90%;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+  
+  .label-float input {
+    font-size: 14px;
+  }
+  
+  .label-float label {
+    font-size: 12px;
+  }
+  
+  button {
+    font-size: 10pt;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    margin-top: 20px;
+  }
+  
+  .card {
+    padding: 15px;
+    width: 100%;
+  }
+  
+  h1 {
+    font-size: 20px;
+  }
+  
+  .label-float input {
+    font-size: 12px;
+  }
+  
+  .label-float label {
+    font-size: 10px;
+  }
+  
+  button {
+    font-size: 8pt;
+  }
 }

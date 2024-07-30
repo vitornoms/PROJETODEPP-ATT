@@ -10,8 +10,7 @@ body{
   background-color: #3371ac60;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed
-  
+  background-attachment: fixed;
 }
 
 .container {
@@ -27,7 +26,7 @@ body{
   padding: 30px;
   border-radius: 4%;
   border-color: black;
-  box-shadow: 3px 3px 1px 0px #00000060
+  box-shadow: 3px 3px 1px 0px #00000060;
 }
 
 h1{
@@ -48,7 +47,6 @@ h1{
   font-size: 16px;
   transition: all .3s ease-out;
   border-radius: 0;
-  
 }
 
 .label-float{
@@ -64,7 +62,7 @@ h1{
 
 .label-float label{
   color: #272262;
-  pointer-event: none;
+  pointer-events: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -76,7 +74,7 @@ h1{
 .label-float input:valid + label{
   font-size: 13px;
   margin-top: 0;
-  color: #4038a0
+  color: #4038a0;
 }
 
 button{
@@ -134,11 +132,80 @@ a:hover{
   color: #272262;
 }
 
- #msgError{
+#msgError{
   text-align: center;
   color: #ff0000;
   background-color: #ffbbbb;
   padding: 10px;
   border-radius: 4px;
   display: none;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .container {
+    margin-top: 50px;
+  }
+  
+  .card {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+  }
+  
+  .label-float input {
+    font-size: 14px;
+  }
+  
+  .label-float label {
+    font-size: 12px;
+  }
+  
+  button {
+    font-size: 10pt;
+  }
+  
+  p {
+    font-size: 12pt;
+  }
+  
+  hr {
+    width: 80%;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    margin-top: 20px;
+  }
+  
+  .card {
+    padding: 15px;
+  }
+  
+  h1 {
+    font-size: 20px;
+  }
+  
+  .label-float input {
+    font-size: 12px;
+  }
+  
+  .label-float label {
+    font-size: 10px;
+  }
+  
+  button {
+    font-size: 8pt;
+  }
+  
+  p {
+    font-size: 10pt;
+  }
+  
+  hr {
+    width: 100%;
+  }
 }
