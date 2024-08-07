@@ -11,7 +11,7 @@ const fileUpload = require('express-fileupload');
  
 const usersRouter = require('./routes/userRouter');
 const loginRouter = require('./routes/loginRouter');
-const empresasRouter = require('./routes/empresasRouter');
+const taskRouter = require('./routes/taskRouter');
  
 // Instanciar o express na variável app
 const app = express();
@@ -25,6 +25,6 @@ app.use(fileUpload());
 app.use('/uploads', express.static(path.join(__dirname, "uploads")))
 app.use('/api', usersRouter);
 app.use('/api', loginRouter);
-app.use('/api', empresasRouter);
+app.use('/api', taskRouter);
  
 module.exports = app;

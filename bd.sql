@@ -10,11 +10,12 @@ create table tasks(
 
 select*from tasks;
 
-create table registra(
-	id INT auto_increment primary key,
-    title VARCHAR(255) not null,
-    description text,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+create table users(
+	id int not null auto_increment primary key,
+    name varchar(255) not null,
+    password varchar(255) not null,
+    created_at timestamp default current_timestamp,
+    updated_at timestamp default current_timestamp
+);
 
-select*from registra
+select*from users;

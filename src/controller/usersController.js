@@ -3,13 +3,13 @@ const connection = require('../config/db');
 async function storeUser(request, response) {
     //recupera os dados do form
     const params = Array(
-        request.body.usuario,
-        request.body.email,
+        request.body.nome,
+       // request.body.usuario,
         request.body.senha
     );
    
     //comando no banco
-    const query = "INSERT INTO users(name, email, password) VALUES(?,?,?)";
+    const query = "INSERT INTO users(name, password) VALUES(?,?)";
  
     connection.query(query, params, (err, results) => {
         console.log(err, results)
