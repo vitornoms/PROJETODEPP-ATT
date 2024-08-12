@@ -16,7 +16,7 @@ async function login(request, response) {
                         success: true,
                         message: "Sucesso",
                         data: results
-                    })      
+                    })  
             } else {
                 response
                     .status(400)

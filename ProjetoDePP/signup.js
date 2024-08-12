@@ -4,9 +4,9 @@ let nome = document.querySelector('#nome')
 let labelNome = document.querySelector('#labelNome')
 let validNome = false
 
-let usuario = document.querySelector('#usuario')
-let labelUsuario = document.querySelector('#labelUsuario')
-let validUsuario = false
+let email = document.querySelector('#email')
+let labelEmail = document.querySelector('#labelEmail')
+let validEmail = false
 
 let senha = document.querySelector('#senha')
 let labelSenha = document.querySelector('#labelSenha')
@@ -29,17 +29,17 @@ nome.addEventListener('keyup', () => {
   }
 })
 
-usuario.addEventListener('keyup', () => {
-  if(usuario.value.length <= 4){
-    labelUsuario.setAttribute('style', 'color: red')
-    labelUsuario.innerHTML = 'Usuário *Insira no minimo 5 caracteres'
-    usuario.setAttribute('style', 'border-color: red')
-    validUsuario = false
+email.addEventListener('keyup', () => {
+  if(email.value.length <= 4){
+    labelEmail.setAttribute('style', 'color: red')
+    labelEmail.innerHTML = 'Email *Insira no minimo 5 caracteres'
+    email.setAttribute('style', 'border-color: red')
+    validEmail = false
   } else {
-    labelUsuario.setAttribute('style', 'color: green')
-    labelUsuario.innerHTML = 'Usuário'
-    usuario.setAttribute('style', 'border-color: green')
-    validUsuario = true
+    labelEmail.setAttribute('style', 'color: green')
+    labelEmail.innerHTML = 'Email'
+    email.setAttribute('style', 'border-color: green')
+    validEmail = true
   }
 })
 
@@ -59,13 +59,13 @@ senha.addEventListener('keyup', () => {
 
 
 function cadastrar(){
-  if(validNome && validUsuario && validSenha){
+  if(validNome && validEmail && validSenha){
     let listaUser = JSON.parse(localStorage.getItem('listaUser') || '[]')
     
     listaUser.push(
     {
       nomeCad: nome.value,
-      userCad: usuario.value,
+      emailCad: email.value,
       senhaCad: senha.value
     }
     )
@@ -74,7 +74,7 @@ function cadastrar(){
     
    
     msgSuccess.setAttribute('style', 'display: block')
-    msgSuccess.innerHTML = '<strong>Cadastrando usuário...</strong>'
+    msgSuccess.innerHTML = '<strong>Cadastrando email...</strong>'
     msgError.setAttribute('style', 'display: none')
     msgError.innerHTML = ''
     
@@ -101,23 +101,13 @@ btn.addEventListener('click', ()=>{
   }
 })
 
-btnConfirm.addEventListener('click', ()=>{
-  let inputConfirmSenha = document.querySelector('#confirmSenha')
-  
-  if(inputConfirmSenha.getAttribute('type') == 'password'){
-    inputConfirmSenha.setAttribute('type', 'text')
-  } else {
-    inputConfirmSenha.setAttribute('type', 'password')
-  }
-})
-
 let button = document.getElementById("btnConfirm");
 
 button.onclick = async function() {
     let nome = document.getElementById("nome").value;
-    //let usuario = document.getElementById("usuario").value;
+    let email = document.getElementById("email").value;
     let senha = document.getElementById("senha").value;
-    let data = {nome, /*usuario,*/ senha}
+    let data = {nome, email, senha}
 
   
     const response = await fetch('http://localhost:3000/api/user/create', {
