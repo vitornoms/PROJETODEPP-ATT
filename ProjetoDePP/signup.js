@@ -77,10 +77,6 @@ function cadastrar(){
     msgSuccess.innerHTML = '<strong>Cadastrando email...</strong>'
     msgError.setAttribute('style', 'display: none')
     msgError.innerHTML = ''
-    
-    setTimeout(()=>{
-        window.location.href = 'signin.html'
-    }, 3000)
   
     
   } else {
@@ -119,9 +115,10 @@ button.onclick = async function() {
     let content = await response.json();
 
 
-    if(content.success) {
-        alert("Sucesso")
-    } else{
-        alert('Não');
+    if (content.success){
+      alert('Sucesso')
+      window.location.href = 'signin.html';
+    } else {
+      alert('Não')
     }
 }
