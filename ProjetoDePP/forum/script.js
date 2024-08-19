@@ -47,6 +47,20 @@ document.addEventListener('DOMContentLoaded', function() {
             var p = document.createElement('p');
             p.textContent = postagem;
 
+            // Botão de editar
+            var editButton = document.createElement('button');
+            editButton.classList.add('edit-button');
+            editButton.textContent = '✎';
+            editButton.addEventListener('click', function() {
+                var newText = prompt('Editar comentário:', postagem);
+                if (newText !== null && newText.trim() !== '') {
+                    postagensSalvas[index] = newText;
+                    localStorage.setItem('postagensSalvas', JSON.stringify(postagensSalvas));
+                    renderPostagens();
+                }
+            });
+
+            // Botão de deletar
             var deleteButton = document.createElement('button');
             deleteButton.classList.add('delete-button');
             deleteButton.textContent = '🗑️';
@@ -56,7 +70,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 renderPostagens();
             });
 
+            // Adicionar os botões e o texto à mensagem
             messageItem.appendChild(p);
+            messageItem.appendChild(editButton);
             messageItem.appendChild(deleteButton);
             messagesDiv.appendChild(messageItem);
         });
@@ -83,3 +99,4 @@ document.addEventListener('DOMContentLoaded', function() {
         renderPostagens();
     });
 });
+

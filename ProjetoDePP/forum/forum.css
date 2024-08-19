@@ -22,6 +22,20 @@ header h2 {
   margin-bottom: 20px;
 }
 
+/* Estilos para o link Home */
+.home-link {
+  text-decoration: none; /* Remove o sublinhado */
+  color: #000000; /* Cor do texto */
+  transition: all 0.3s ease; /* Transição suave */
+}
+
+.home-link:hover {
+  font-size: 1.2em; /* Aumenta o tamanho da fonte de forma mais sutil */
+  color: #417ab7; /* Cor do texto ao passar o mouse */
+  text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
+
 .postagem {
   font-size: 20px;
   margin-bottom: 20px;
@@ -204,12 +218,24 @@ h2 {
   border-top: 1px solid #cdd7dc;
 }
 
-.delete-button {
+.delete-button, .edit-button {
   font-size: 20px; /* Emoji size */
   background-color: transparent; /* Transparent background */
   border: none; /* No border */
   cursor: pointer; /* Pointer cursor on hover */
-  margin-left: auto; /* Align button to the right */
+  margin-left: 10px; /* Space between buttons */
+}
+
+.delete-button {
+  color: #ff4c4c; /* Red color for delete button */
+}
+
+.edit-button {
+  color: #007bff; /* Blue color for edit button */
+}
+
+.edit-button:hover {
+  color: #0056b3; /* Darker blue on hover */
 }
 
 .message-item {
@@ -219,6 +245,25 @@ h2 {
   padding: 10px; /* Padding */
   border: 1px solid #ccc; /* Border */
   border-radius: 5px; /* Rounded corners */
+  position: relative; /* Positioning context for absolute positioning */
+}
+
+.message-item p {
+  flex-grow: 1; /* Make the paragraph take up remaining space */
+}
+
+/* Estilo para o botão de editar */
+.edit-button {
+  font-size: 20px; /* Emoji size */
+  background-color: transparent; /* Transparent background */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor on hover */
+  margin-right: 10px; /* Space between edit button and message text */
+  color: #007bff; /* Color of the edit button */
+}
+
+.edit-button:hover {
+  color: #0056b3; /* Cor ao passar o mouse sobre o botão de editar */
 }
 
 /* Media Queries for Responsiveness */

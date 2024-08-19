@@ -2,122 +2,137 @@
 	margin: 0;
 	padding: 0;
 	font-family: Century Gothic;
-  }
-  
-  header {
+}
+
+header {
 	background-color: #3371ac60;
 	height: 100vh;
 	background-size: cover;
 	background-position: center;
 	min-height: 100px;
-  }
-  
-  .log {
+}
+
+.log {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px 10vh;
-  }
-  
-  #leave {
-	width: 8vh;
-	height: 5vh;
-	background-color: #3371ac60;
-	border-radius: 15px;
-	border: none;
+	padding: 10px 5vw; /* Ajustado para responsividade */
+}
+
+#leave {
+	width: 10vh; /* Tamanho do botão */
+	height: 6vh;
+	background-color: #3371ac60; /* Cor de fundo */
+	color: #000000; /* Cor do texto */
+	border-radius: 25px; /* Bordas arredondadas */
+	font-size: 16px; /* Tamanho da fonte */
+	font-weight: bold; /* Negrito */
 	cursor: pointer;
-  }
-  
-  #leave:hover {
-	background-color: rgb(255, 255, 255);
-	transition: 0.5s;
-  }
-  
-  ul {
-	float: right;
+	transition: all 0.3s ease; /* Transição suave para mudanças */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-transform: uppercase; /* Texto em maiúsculas */
+	padding: 0 15px; /* Espaçamento interno */
+	margin-top: 20px; /* Adicionado para mover o botão para baixo */
+}
+
+#leave:hover {
+	background-color: #fff; /* Cor de fundo ao passar o mouse */
+	color: #ff4c4c; /* Cor do texto ao passar o mouse */
+	border: 2px solid #ff4c4c; /* Borda ao passar o mouse */
+	transform: scale(1.05); /* Leve aumento ao passar o mouse */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para profundidade */
+}
+
+ul {
+	float: none; /* Removido float para centralizar a navegação */
 	list-style-type: none;
 	margin-top: 30px;
-	margin-right: 40vh;
-  }
-  
-  ul li {
+	text-align: center; /* Centraliza a navegação */
+}
+
+ul li {
 	display: inline-block;
-  }
-  
-  ul li a {
+}
+
+ul li a {
 	text-decoration: none;
 	color: #fff;
 	padding: 5px 20px;
 	border: 1px solid transparent;
 	transition: 0.5s ease;
-  }
-  
-  ul li a:hover {
+}
+
+ul li a:hover {
 	background-color: #fff;
 	color: #000;
-  }
-  
-  ul li.active a {
+}
+
+ul li.active a {
 	background-color: #fff;
 	color: #000;
-  }
-  
-  .logo img {
+}
+
+.logo img {
 	float: left;
 	width: 150px;
 	height: auto;
-  }
-  
-  .main {
+}
+
+.main {
 	max-width: 1200px;
 	margin: auto;
-  }
-  
-  .title {
+	text-align: center; /* Centraliza o conteúdo */
+}
+
+.title {
 	display: flex;
 	justify-content: center;
 	margin-top: 30vh;
-  }
-  
-  .title h1 {
+}
+
+.title h1 {
 	color: #fff;
 	font-size: 85px;
-  }
-  
-  .button {
+}
+
+.button {
 	display: flex;
 	justify-content: center;
 	margin-top: 10px;
-  }
-  
-  .btn {
+	flex-wrap: wrap; /* Para adaptar botões em telas menores */
+}
+
+.btn {
 	border: 1px solid #fff;
 	padding: 5px 20px;
 	color: #fff;
 	transition: 0.6s ease;
 	font-size: 18px;
 	text-decoration: none;
-  }
-  
-  .btn:hover {
+	margin: 5px; /* Adicionado para espaçamento entre botões */
+}
+
+.btn:hover {
 	background-color: #fff;
 	color: #000;
-  }
-  
-  .main ul li:hover .sub-menu {
+}
+
+.main ul li:hover .sub-menu {
 	display: block;
 	position: absolute;
 	background-color: rgb(0, 45, 117);
 	margin-top: 12px;
 	margin-left: -8px;
-  }
-  
-  .main ul li:hover .sub-menu ul {
+}
+
+.main ul li:hover .sub-menu ul {
 	display: block;
 	margin: 6px;
-  }
-  
-  .main ul li:hover .sub-menu ul li {
+}
+
+.main ul li:hover .sub-menu ul li {
 	width: 75px;
 	padding: 5px;
 	border-bottom: 1px #fff;
@@ -125,83 +140,82 @@
 	transition: 0.4s ease;
 	text-align: left;
 	border-radius: 0;
-  }
-  
-  .main ul li:hover .sub-menu ul li:last-child {
+}
+
+.main ul li:hover .sub-menu ul li:last-child {
 	border-bottom: none;
-  }
-  
-  /* Media Queries for Responsiveness */
-  @media (max-width: 1024px) {
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
 	.log {
 	  flex-direction: column;
 	  align-items: flex-start;
 	}
-  
+
 	ul {
-	  margin-right: 20vh;
+	  margin-right: 0; /* Ajustado para centralização em telas menores */
 	}
-  
+
 	.title h1 {
 	  font-size: 70px;
 	}
-  }
-  
-  @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
 	ul {
-	  margin-right: 10vh;
+	  margin-right: 0; /* Ajustado para centralização em telas menores */
 	}
-  
+
 	.title {
 	  margin-top: 20vh;
 	}
-  
+
 	.title h1 {
 	  font-size: 50px;
 	}
-  
+
 	.btn {
 	  padding: 5px 15px;
 	  font-size: 16px;
 	}
-  }
-  
-  @media (max-width: 576px) {
+}
+
+@media (max-width: 576px) {
 	header {
 	  height: auto;
 	}
-  
+
 	ul {
 	  float: none;
 	  text-align: center;
 	  margin: 20px 0;
 	}
-  
+
 	ul li {
 	  display: block;
 	  margin: 10px 0;
 	}
-  
+
 	.title {
 	  margin-top: 10vh;
 	}
-  
+
 	.title h1 {
 	  font-size: 40px;
 	}
-  
+
 	.btn {
 	  padding: 5px 10px;
 	  font-size: 14px;
 	}
-  
+
 	.button {
 	  flex-direction: column;
 	}
-  
+
 	#leave {
 	  margin-right: 0;
-	  margin-top: 10px;
+	  margin-top: 10px; /* Ajustado para tela menor */
 	}
-  }
-  
+}
