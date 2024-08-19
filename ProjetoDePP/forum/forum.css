@@ -1,12 +1,16 @@
 @charset "UTF-8";
+
+/* General Reset */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-  color: #4d4d4d;
-  background-color: #ebeff1;
-  font-family: "Signika";
+  color: #333;
+  background-color: #e6f0ff; /* Light blue background */
+  font-family: "Signika", sans-serif;
   font-size: 16px;
   font-weight: 300;
   text-rendering: optimizeLegibility;
@@ -26,9 +30,9 @@ header h2 {
 
 #messages {
   width: 100%;
-  background-color: white;
+  background-color: #ffffff; /* White background for messages */
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   margin-top: 5vh;
 }
@@ -43,78 +47,61 @@ h2 {
   font-weight: 400;
 }
 
-h3 {
-  font-size: 18px;
-  font-weight: 700;
-}
-
-h4 {
-  font-size: 12px;
-  font-weight: 400;
-  color: #89989c;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
 .comment-form__avatar, .post__avatar {
   position: absolute;
   top: 15px;
   left: 15px;
   height: 50px;
   width: 50px;
-  background-color: #89989c;
+  background-color: #89989c; /* Original color for avatars */
   border-radius: 50%;
 }
 
 .comment-form .comment-form__actions .button {
   position: relative;
   display: inline-block;
-  width: initial;
+  width: auto;
   height: 35px;
   padding: 0 10px;
   margin-left: 15px;
-  background-color: white;
-  color: #4ab2d9;
+  background-color: #ffffff; /* White background for the comment button */
+  color: #007bff; /* Light blue text color */
   line-height: 35px;
   font-weight: 400;
   text-align: center;
   border-radius: 2px;
   cursor: pointer;
-  border: 1px solid #4ab2d9;
+  border: 1px solid #007bff; /* Light blue border */
   -webkit-transition: all 0.1s;
   -o-transition: all 0.1s;
   transition: all 0.1s;
 }
 
 .comment-form .comment-form__actions .button:hover {
-  background-color: #4ab2d9;
-  color: #FFF;
+  background-color: #007bff; /* Light blue on hover */
+  color: #ffffff; /* White text color on hover */
 }
 
 .comment-form, .panel {
   position: relative;
   padding: 15px;
-  background-color: #FFF;
+  background-color: #ffffff;
   border-radius: 2px;
   box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.15);
 }
 
 .container {
   max-width: 900px;
-  margin: 0 auto;
+  margin: 50px auto 20px; /* Move container a bit more down */
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly translucent white */
 }
 
 .response-group {
   position: relative;
   width: 100%;
   padding: 100px 15px 15px;
-  background-color: #fff;
+  background-color: #ffffff; /* White background for the response group */
   border-radius: 2px;
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.15);
   margin-bottom: 20px;
@@ -126,7 +113,7 @@ ul {
   left: 0;
   right: 0;
   padding: 5px 15px;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly translucent white */
   border-radius: 2px;
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.15);
   z-index: 100;
@@ -148,7 +135,6 @@ ul {
   font-size: 1.2em;
   font-weight: 700;
   text-align: center;
-  color: #89989c;
   border: 2px solid #cdd7dc;
   border-radius: 50%;
 }
@@ -201,7 +187,7 @@ ul {
 
 .comment-form .comment-form__actions .button--confirm:hover {
   background-color: #5fbc71;
-  color: #FFF;
+  color: #ffffff;
 }
 
 .post--commenting .post__actions {
@@ -219,20 +205,20 @@ ul {
 }
 
 .delete-button {
-  font-size: 20px; /* Tamanho do emoji */
-  background-color: transparent; /* Fundo transparente */
-  border: none; /* Sem borda */
-  cursor: pointer; /* Cursor pointer ao passar o mouse */
-  margin-left: auto; /* Empurra o botão para o lado direito */
+  font-size: 20px; /* Emoji size */
+  background-color: transparent; /* Transparent background */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor on hover */
+  margin-left: auto; /* Align button to the right */
 }
 
 .message-item {
-  display: flex; /* Exibir como flexbox para alinhamento do texto e botão */
-  align-items: center; /* Alinhar verticalmente os itens */
-  margin-bottom: 10px; /* Espaçamento entre as mensagens */
-  padding: 10px; /* Adicionar padding */
-  border: 1px solid #ccc; /* Adicionar borda */
-  border-radius: 5px; /* Bordas arredondadas */
+  display: flex; /* Flexbox layout */
+  align-items: center; /* Center items vertically */
+  margin-bottom: 10px; /* Spacing between messages */
+  padding: 10px; /* Padding */
+  border: 1px solid #ccc; /* Border */
+  border-radius: 5px; /* Rounded corners */
 }
 
 /* Media Queries for Responsiveness */
