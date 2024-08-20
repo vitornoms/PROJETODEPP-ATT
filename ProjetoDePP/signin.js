@@ -1,6 +1,6 @@
 let btn = document.querySelector('.fa-eye')
 
-btn.addEventListener('click', ()=>{
+btn.addEventListener('click', () => {
   let inputSenha = document.querySelector('#senha')
   
   if(inputSenha.getAttribute('type') == 'password'){
@@ -10,18 +10,10 @@ btn.addEventListener('click', ()=>{
   }
 })
 
-
-
-async function entrar(){
-
-
+async function entrar() {
   let email = document.querySelector('#email').value
-  
   let senha = document.querySelector('#senha').value
-  
   let data = {email, senha}
-  console.log(data)
-
 
   const response = await fetch('http://localhost:3000/api/login',{
     method: "POST",
@@ -29,14 +21,15 @@ async function entrar(){
     body: JSON.stringify(data)
   });
 
-  console.log(response)
-
   let content = await response.json();
 
   if (content.success){
-    alert('Sucesso')
-    window.location.href = 'index.html';
+    localStorage.setItem('token', content.token) // Armazena o token
+    alert('Login realizado com sucesso')
+    window.location.href = 'index.html'; // Redireciona para a página principal
   } else {
-    alert('Não')
+    alert('Falha no login')
   }
 }
+
+document.getElementById('btnConfirm').addEventListener('click', entrar)

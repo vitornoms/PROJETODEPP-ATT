@@ -15,10 +15,11 @@ let validSenha = false
 let msgError = document.querySelector('#msgError')
 let msgSuccess = document.querySelector('#msgSuccess')
 
+// Valida o nome
 nome.addEventListener('keyup', () => {
   if(nome.value.length <= 2){
     labelNome.setAttribute('style', 'color: red')
-    labelNome.innerHTML = 'Nome *Insira no minimo 3 caracteres'
+    labelNome.innerHTML = 'Nome *Insira no mínimo 3 caracteres'
     nome.setAttribute('style', 'border-color: red')
     validNome = false
   } else {
@@ -29,10 +30,11 @@ nome.addEventListener('keyup', () => {
   }
 })
 
+// Valida o e-mail
 email.addEventListener('keyup', () => {
   if(email.value.length <= 4){
     labelEmail.setAttribute('style', 'color: red')
-    labelEmail.innerHTML = 'Email *Insira no minimo 5 caracteres'
+    labelEmail.innerHTML = 'Email *Insira no mínimo 5 caracteres'
     email.setAttribute('style', 'border-color: red')
     validEmail = false
   } else {
@@ -43,10 +45,11 @@ email.addEventListener('keyup', () => {
   }
 })
 
+// Valida a senha
 senha.addEventListener('keyup', () => {
   if(senha.value.length <= 5){
     labelSenha.setAttribute('style', 'color: red')
-    labelSenha.innerHTML = 'Senha *Insira no minimo 6 caracteres'
+    labelSenha.innerHTML = 'Senha *Insira no mínimo 6 caracteres'
     senha.setAttribute('style', 'border-color: red')
     validSenha = false
   } else {
@@ -57,28 +60,40 @@ senha.addEventListener('keyup', () => {
   }
 })
 
-
-function cadastrar(){
+// Função de cadastro
+async function cadastrar() {
   if(validNome && validEmail && validSenha){
     let listaUser = JSON.parse(localStorage.getItem('listaUser') || '[]')
     
-    listaUser.push(
-    {
+    listaUser.push({
       nomeCad: nome.value,
       emailCad: email.value,
       senhaCad: senha.value
-    }
-    )
+    })
     
     localStorage.setItem('listaUser', JSON.stringify(listaUser))
     
-   
+    // Envia os dados ao servidor
+    let data = {nome: nome.value, email: email.value, senha: senha.value}
+    const response = await fetch('http://localhost:3000/api/user/create', {
+      method: "POST",
+      headers: {"Content-type": "application/json;charset=UTF-8"},
+      body: JSON.stringify(data)
+    });
+
+    let content = await response.json();
+    
+    if (content.success){
+      alert('Cadastro realizado com sucesso')
+      window.location.href = 'signin.html'; // Redireciona para a página de login
+    } else {
+      alert('Erro ao cadastrar')
+    }
+    
     msgSuccess.setAttribute('style', 'display: block')
     msgSuccess.innerHTML = '<strong>Cadastrando email...</strong>'
     msgError.setAttribute('style', 'display: none')
     msgError.innerHTML = ''
-  
-    
   } else {
     msgError.setAttribute('style', 'display: block')
     msgError.innerHTML = '<strong>Preencha todos os campos corretamente antes de cadastrar</strong>'
@@ -87,7 +102,9 @@ function cadastrar(){
   }
 }
 
-btn.addEventListener('click', ()=>{
+document.getElementById('btnConfirm').addEventListener('click', cadastrar)
+
+btn.addEventListener('click', () => {
   let inputSenha = document.querySelector('#senha')
   
   if(inputSenha.getAttribute('type') == 'password'){
@@ -96,29 +113,3 @@ btn.addEventListener('click', ()=>{
     inputSenha.setAttribute('type', 'password')
   }
 })
-
-let button = document.getElementById("btnConfirm");
-
-button.onclick = async function() {
-    let nome = document.getElementById("nome").value;
-    let email = document.getElementById("email").value;
-    let senha = document.getElementById("senha").value;
-    let data = {nome, email, senha}
-
-  
-    const response = await fetch('http://localhost:3000/api/user/create', {
-        method: "POST",
-        headers: {"Content-type": "application/json;charset=UTF-8"},
-        body: JSON.stringify(data)
-    });
-
-    let content = await response.json();
-
-
-    if (content.success){
-      alert('Sucesso')
-      window.location.href = 'signin.html';
-    } else {
-      alert('Não')
-    }
-}
