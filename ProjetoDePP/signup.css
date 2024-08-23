@@ -4,179 +4,129 @@
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
+  box-sizing: border-box; /* Add box-sizing: border-box */
 }
 
 body {
-  background-color: #3371ac60;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
+  background-color: #e0f2f7; /* Light blue background */
+  color: #333; /* Dark gray text */
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
 .container {
   display: flex;
   justify-content: center;
-  width: 100%;
-  margin-top: 100px;
+  align-items: center;
+  width: 100%; /* Make container full width */
 }
 
 .card {
-  background-color: #3371ac60;
+  background-color: #fff; /* White card background */
+  border-radius: 10px;
   padding: 30px;
-  border-radius: 4%;
-  box-shadow: 3px 3px 1px 0px #00000060;
-  width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 90%; /* Make card responsive to screen size */
+  max-width: 400px; /* Set maximum width for larger screens */
+  text-align: center;
 }
 
 h1 {
-  text-align: center;
+  color: #007bff; /* Blue heading */
   margin-bottom: 20px;
-  color: #0d009c;
+}
+
+#msgError {
+  color: red;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+/* Input fields */
+.label-float {
+  position: relative;
+  margin-bottom: 20px;
 }
 
 .label-float input {
   width: 100%;
-  padding: 5px 5px;
-  display: inline-block;
-  border: 0;
-  border-bottom: 2px solid #0d009c;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #ccc; /* Gray border */
   background-color: transparent;
-  outline: none;
-  min-width: 180px;
+  color: #333; /* Dark gray text */
   font-size: 16px;
-  transition: all .3s ease-out;
-  border-radius: 0;
-}
-
-.label-float {
-  position: relative;
-  padding-top: 13px;
-  margin-top: 5%;
-  margin-bottom: 5%;
-}
-
-.label-float input:focus {
-  border-bottom: 2px solid #4038a0;
+  transition: border-color 0.3s ease;
 }
 
 .label-float label {
-  color: #0d009c;
-  pointer-events: none;
   position: absolute;
-  top: 0;
-  left: 0;
-  margin-top: 13px;
-  transition: all .3s ease-out;
+  top: 10px;
+  left: 10px;
+  color: #999;
+  pointer-events: none;
+  transition: top 0.3s ease, color 0.3s ease;
 }
 
-.label-float input:focus + label,
-.label-float input:valid + label {
-  font-size: 13px;
-  margin-top: 0;
-  color: #4038a0;
+.label-float input:focus {
+  border-bottom-color: #007bff; /* Blue border on focus */
 }
 
+.label-float input:focus ~ label {
+  top: -8px;
+  color: #007bff; /* Blue label on focus */
+  font-size: 14px;
+}
+
+/* Buttons */
 button {
-  background-color: transparent;
-  border-color: #0d009c;
-  color: #0d009c;
-  padding: 7px;
-  font-weight: bold;
-  font-size: 12pt;
-  margin-top: 20px;
-  border-radius: 4px;
+  background-color: #007bff; /* Blue button */
+  color: #fff; /* White text */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  outline: none;
-  transition: all .4s ease-out;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Make button full width */
 }
 
 button:hover {
-  background-color: #0d009c;
-  color: #fff;
+  background-color: #0069d9; /* Darker blue on hover */
 }
 
 .justify-center {
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
+}
+
+/*  */
+hr {
+  border: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+a {
+  color: #007bff; /* Blue link */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .fa-eye {
   position: absolute;
-  top: 15px;
   right: 10px;
+  top: 12px;
+  color: #999;
   cursor: pointer;
-  color: #0d009c;
 }
 
-#msgError {
-  text-align: center;
-  color: #ff0000;
-  background-color: #ffbbbb;
-  padding: 10px;
-  border-radius: 4px;
-  display: none;
-}
-
-#msgSuccess {
-  text-align: center;
-  color: #00bb00;
-  background-color: #bbffbe;
-  padding: 10px;
-  border-radius: 4px;
-  display: none;
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-  .container {
-    margin-top: 50px;
-  }
-  
-  .card {
-    padding: 20px;
-    width: 90%;
-  }
-  
-  h1 {
-    font-size: 24px;
-  }
-  
-  .label-float input {
-    font-size: 14px;
-  }
-  
-  .label-float label {
-    font-size: 12px;
-  }
-  
-  button {
-    font-size: 10pt;
-  }
-}
-
-@media (max-width: 576px) {
-  .container {
-    margin-top: 20px;
-  }
-  
-  .card {
-    padding: 15px;
-    width: 100%;
-  }
-  
-  h1 {
-    font-size: 20px;
-  }
-  
-  .label-float input {
-    font-size: 12px;
-  }
-  
-  .label-float label {
-    font-size: 10px;
-  }
-  
-  button {
-    font-size: 8pt;
-  }
+.fa-eye:hover {
+  color: #007bff; /* Blue eye icon on hover */
 }
