@@ -91,12 +91,5 @@ document.addEventListener('DOMContentLoaded', function() { // Adiciona um evento
             document.getElementById('title').value = ''; // Limpa o campo de entrada após a postagem.
         }
     });
-
-    // Adicionar evento de clique ao botão de cancelar (limpar postagens)
-    document.getElementById('handleClear').addEventListener('click', function() { // Adiciona um evento de clique ao botão de "Cancelar".
-        localStorage.removeItem('postagensSalvas'); // Remove todas as postagens salvas do localStorage.
-        postagensSalvas = []; // Limpa o array de postagens salvas.
-        renderPostagens(); // Re-renderiza as postagens para refletir a limpeza.
-    });
 });
 

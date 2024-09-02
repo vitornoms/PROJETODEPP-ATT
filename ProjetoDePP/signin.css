@@ -8,7 +8,6 @@
 body {
   background-color: #e0f2f7;
   color: #333;
-  font-family: 'Arial', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,25 +57,48 @@ h1 {
   background-color: transparent;
   color: #333;
   font-size: 16px;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, padding-top 0.3s ease;
 }
 
 .label-float label {
   position: absolute;
-  top: 10px;
+  top: 50%;
   left: 10px;
+  transform: translateY(-50%);
   color: #999;
   pointer-events: none;
-  transition: top 0.3s ease, color 0.3s ease;
+  transition: top 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
-.label-float input:focus {
-  border-bottom-color: #007bff;
+.label-float input:focus,
+.label-float input:not(:placeholder-shown) {
+  padding-top: 20px;
 }
 
-.label-float input:focus + label, .label-float input:not(:placeholder-shown) + label {
+.label-float input:focus + label,
+.label-float input:not(:placeholder-shown) + label {
   top: -8px;
   font-size: 14px;
+  color: #007bff;
+  transform: none;
+}
+
+/* Eye icon container */
+.eye-container {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.eye-container i {
+  font-size: 18px;
+  color: #999;
+}
+
+.eye-container i:hover {
   color: #007bff;
 }
 
@@ -102,7 +124,6 @@ button:hover {
   margin-bottom: 20px;
 }
 
-/*  */
 hr {
   border: 1px solid #ccc;
   margin: 20px 0;
@@ -115,17 +136,4 @@ a {
 
 a:hover {
   text-decoration: underline;
-}
-
-.eye-container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-left: 10px;
-}
-
-.eye-container i {
-  font-size: 18px;
-  color: #999;
-  cursor: pointer;
 }
