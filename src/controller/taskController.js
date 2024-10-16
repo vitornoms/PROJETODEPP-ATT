@@ -17,7 +17,7 @@ async function storeTask(request, response){
         request.body.description
     );
 // Define a query SQL para inserir uma nova linha na tabela tasks com os valores title e description. Os pontos de interrogação (?) são placeholders que serão substituídos pelos valores reais dos parâmetros.
-    const query = "INSERT INTO tasks(title,description) VALUES(?,?)";
+    const query = "INSERT INTO forum(title,description) VALUES(?,?)";
 // connection.query executa a query SQL com os parâmetros fornecidos. A função de callback recebe dois argumentos: err e results.
 // Se results estiver presente (indicando que a query foi bem-sucedida), uma resposta JSON com status 201 (Criado) é enviada ao cliente, incluindo uma mensagem de sucesso e os resultados da operação.
 // Se houver um erro (err), uma resposta JSON com status 400 (Requisição Inválida) é enviada, incluindo uma mensagem de erro e os detalhes do erro SQL.
