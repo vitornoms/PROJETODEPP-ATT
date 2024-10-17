@@ -18,17 +18,40 @@ button.onclick = async function() { // Adiciona um evento de clique ao botão, d
 
     let content = await response.json(); // Espera a resposta do servidor e a converte para um objeto JavaScript.
 
-    if(content.success) { // Verifica se a resposta indica sucesso.
-        alert("Sucesso"); // Exibe um alerta de sucesso.
-    } else { 
-        alert('Não'); // Exibe um alerta indicando falha.
+    if (content.success) {
+        // Salva a nova postagem com o ID retornado
+        const novaPostagem = content.data;
+        let postagensSalvas = JSON.parse(localStorage.getItem('postagensSalvas')) || [];
+        postagensSalvas.push(novaPostagem);
+        localStorage.setItem('postagensSalvas', JSON.stringify(postagensSalvas));
+        
+        alert("Sucesso");
+        renderPostagens(); // Atualiza a interface
+        document.getElementById('title').value = ''; // Limpa o campo de entrada
+    } else {
+        alert('Não');
     }
-}
+};
 
 document.addEventListener('DOMContentLoaded', function() { // Adiciona um evento que executa a função quando o DOM é carregado.
     var postagensSalvas = JSON.parse(localStorage.getItem('postagensSalvas')) || []; // Recupera as postagens salvas do localStorage, ou um array vazio se não houver.
     var messagesDiv = document.getElementById('messages'); // Obtém o elemento com o ID 'messages' para exibir as postagens.
+    
+    async function atualizarPostagem(id, novoTexto) {
+        const response = await fetch(`http://localhost:3000/api/update/task/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title: novoTexto })
+        });
 
+        const result = await response.json();
+        if (result.success) {
+            alert('Postagem atualizada com sucesso!');
+        } else {
+            alert('Erro ao atualizar postagem.');
+        }
+    }
+    
     // Função para renderizar postagens
     function renderPostagens() {
         messagesDiv.innerHTML = ''; // Limpa o conteúdo anterior do elemento 'messagesDiv'.
@@ -48,15 +71,17 @@ document.addEventListener('DOMContentLoaded', function() { // Adiciona um evento
             p.textContent = postagem; // Define o texto da postagem.
 
             // Botão de editar
-            var editButton = document.createElement('button'); // Cria um botão para editar a postagem.
-            editButton.classList.add('edit-button'); // Adiciona uma classe ao botão de editar.
-            editButton.textContent = '✎'; // Define o texto do botão como um ícone de edição.
-            editButton.addEventListener('click', function() { // Adiciona um evento de clique ao botão de editar.
-                var newText = prompt('Editar comentário:', postagem); // Exibe um prompt para editar o texto da postagem.
-                if (newText !== null && newText.trim() !== '') { // Se o texto editado não for nulo e não for vazio...
-                    postagensSalvas[index] = newText; // Atualiza o texto da postagem no array.
-                    localStorage.setItem('postagensSalvas', JSON.stringify(postagensSalvas)); // Atualiza o localStorage com as postagens editadas.
-                    renderPostagens(); // Re-renderiza as postagens para refletir a edição.
+            var editButton = document.createElement('button');
+            editButton.classList.add('edit-button');
+            editButton.textContent = '✎';
+            editButton.addEventListener('click', async function() {
+                console.log(postagem.id);
+                let novoTexto = prompt('Editar comentário:', postagem.title);
+                if (novoTexto && novoTexto.trim() !== '') {
+                    postagensSalvas[index].title = novoTexto;
+                    localStorage.setItem('postagensSalvas', JSON.stringify(postagensSalvas));
+                    await atualizarPostagem(postagem.id, novoTexto);
+                    renderPostagens();
                 }
             });
 

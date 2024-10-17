@@ -1,47 +1,66 @@
-// connection: Importa a configuração do banco de dados a partir de um módulo db localizado na pasta config. 
-// Isso provavelmente estabelece a conexão com o banco de dados.
-
-// dotenv: Carrega variáveis de ambiente a partir de um arquivo .env para garantir que as configurações sensíveis 
-// (como credenciais do banco de dados) sejam mantidas seguras.
-
 const connection = require('../config/db');
 const dotenv = require('dotenv').config();
 
+async function storeTask(request, response) {
+    const { title, description } = request.body;
+    const params = [title, description];
 
-// Esta função é responsável por lidar com a requisição para armazenar uma nova tarefa.
-// O uso do async aqui indica que poderíamos utilizar await dentro da função, mas no código fornecido, não há uso de await.
-async function storeTask(request, response){
-    // Extrai os valores title e description do corpo da requisição (request.body) e os coloca em um array params.
-    const params = Array(
-        request.body.title,
-        request.body.description
-    );
-// Define a query SQL para inserir uma nova linha na tabela tasks com os valores title e description. Os pontos de interrogação (?) são placeholders que serão substituídos pelos valores reais dos parâmetros.
-    const query = "INSERT INTO forum(title,description) VALUES(?,?)";
-// connection.query executa a query SQL com os parâmetros fornecidos. A função de callback recebe dois argumentos: err e results.
-// Se results estiver presente (indicando que a query foi bem-sucedida), uma resposta JSON com status 201 (Criado) é enviada ao cliente, incluindo uma mensagem de sucesso e os resultados da operação.
-// Se houver um erro (err), uma resposta JSON com status 400 (Requisição Inválida) é enviada, incluindo uma mensagem de erro e os detalhes do erro SQL.
+    const query = "INSERT INTO forum(title, description) VALUES(?, ?)";
+
     connection.query(query, params, (err, results) => {
-        if(results) {
-            response
-            .status(201)
-            .json({
-                success: true,
-                message: "Sucesso!",
-                data: results
-            })
-        } else {
-            response
-            .status(400)
-            .json({
+        if (err) {
+            console.error("Erro ao inserir tarefa:", err);
+            return response.status(500).json({
                 success: false,
-                message: "Ops, deu problema!",
+                message: "Erro interno ao inserir a tarefa.",
                 sql: err
-            })
+            });
         }
-    })
+
+        const newTaskId = results.insertId; // Pega o ID da nova tarefa inserida
+        response.status(201).json({
+            success: true,
+            message: "Sucesso!",
+            data: { id: newTaskId, title, description }
+        });
+    });
 }
-// Exporta a função storeTask para que possa ser utilizada em outras partes da aplicação, como no módulo de rotas.
+
+async function updateTask(request, response) {
+    const { id } = request.params;
+    const { title, description } = request.body;
+
+    console.log(`ID recebido: ${id}, Título: ${title}, Descrição: ${description}`); // Log para depuração
+
+    const query = "UPDATE forum SET title = ?, description = ? WHERE id = ?";
+
+    connection.query(query, [title, description, id], (err, results) => {
+        if (err) {
+            console.error("Erro ao atualizar tarefa:", err); // Log do erro
+            return response.status(500).json({
+                success: false,
+                message: "Erro interno ao atualizar a tarefa.",
+                sql: err
+            });
+        }
+
+        if (results && results.affectedRows > 0) {
+            response.status(200).json({
+                success: true,
+                message: "Tarefa atualizada com sucesso!"
+            });
+        } else {
+            response.status(404).json({
+                success: false,
+                message: "Tarefa não encontrada ou não atualizada.",
+                data: { id }
+            });
+        }
+    });
+}
+
+
 module.exports = {
-    storeTask
-}
+    storeTask,
+    updateTask
+};

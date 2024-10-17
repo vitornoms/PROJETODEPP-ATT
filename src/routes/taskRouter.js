@@ -6,10 +6,13 @@ const router = Router();
 
 // Importar a função 'storeTask' do módulo 'taskController', que contém a lógica para manipulação de tarefas.
 // O caminho na linha indica que o módulo está localizado na pasta 'controller'.
-const { storeTask } = require('../controller/taskController');
+const { storeTask, updateTask } = require('../controller/taskController');
 
 // Definir uma rota para requisições HTTP POST. Quando uma requisição POST é feita para essa rota, a função 'storeTask' é chamada.
 router.post('/store/task', storeTask);
+
+// Rota para atualizar uma tarefa existente (PUT).
+router.put('/update/task/:id', updateTask);
 
 // Exportar a instância do 'router' para que ela possa ser usada em outros módulos da aplicação.
 module.exports = router;
