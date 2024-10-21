@@ -5,6 +5,7 @@ if (localStorage.getItem("token") == null) { // Verifica se o token de autentica
 
 let button = document.getElementById("handleSubmit"); // Obtém o elemento com o ID "handleSubmit" e o armazena na variável 'button'.
 
+document.addEventListener('DOMContentLoaded', function() { // Adiciona um evento que executa a função quando o DOM é carregado.
 button.onclick = async function() { // Adiciona um evento de clique ao botão, definido como uma função assíncrona.
     let title = document.getElementById("title").value; // Obtém o valor do elemento com o ID "title" e o armazena na variável 'title'.
     // let description = document.getElementById("description").value; // (Comentado) Obtém o valor do elemento com o ID "description".
@@ -33,7 +34,6 @@ button.onclick = async function() { // Adiciona um evento de clique ao botão, d
     }
 };
 
-document.addEventListener('DOMContentLoaded', function() { // Adiciona um evento que executa a função quando o DOM é carregado.
     var postagensSalvas = JSON.parse(localStorage.getItem('postagensSalvas')) || []; // Recupera as postagens salvas do localStorage, ou um array vazio se não houver.
     var messagesDiv = document.getElementById('messages'); // Obtém o elemento com o ID 'messages' para exibir as postagens.
     
@@ -75,10 +75,10 @@ document.addEventListener('DOMContentLoaded', function() { // Adiciona um evento
             editButton.classList.add('edit-button');
             editButton.textContent = '✎';
             editButton.addEventListener('click', async function() {
-                console.log(postagem.id);
-                let novoTexto = prompt('Editar comentário:', postagem.title);
+                console.log(postagem);
+                let novoTexto = prompt('Editar comentário:', postagem);
                 if (novoTexto && novoTexto.trim() !== '') {
-                    postagensSalvas[index].title = novoTexto;
+                    postagensSalvas[index] = novoTexto;
                     localStorage.setItem('postagensSalvas', JSON.stringify(postagensSalvas));
                     await atualizarPostagem(postagem.id, novoTexto);
                     renderPostagens();
