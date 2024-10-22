@@ -9,11 +9,40 @@ const router = Router();
 const { storeTask, updateTask } = require('../controller/taskController');
 
 // Definir uma rota para requisições HTTP POST. Quando uma requisição POST é feita para essa rota, a função 'storeTask' é chamada.
+/**
+ * @swagger
+ * /tasks/register:
+ *  post:
+ *    summary: Cadastra uma nova tarefa
+ *    responses:
+ *      200:
+ *        description: Sucesso!
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                type: object
+ */
 router.post('/store/task', storeTask);
 
 // Rota para atualizar uma tarefa existente (PUT).
+/**
+ * @swagger
+ * /tasks/delete:
+ *  delete:
+ *    summary: Remove uma tarefa pelo ID
+ *    responses:
+ *      200:
+ *        description: Uma lista de tarefas
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                type: object
+ */
 router.put('/update/task/:id', updateTask);
 
 // Exportar a instância do 'router' para que ela possa ser usada em outros módulos da aplicação.
 module.exports = router;
-
