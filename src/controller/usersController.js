@@ -7,8 +7,8 @@ async function storeUser(request, response) {
     // Recupera os dados enviados pelo formulário na requisição e os armazena em um array
     const params = Array(
         request.body.nome,   // Nome do usuário
-        request.body.email,  // E-mail do usuário
-        request.body.senha   // Senha do usuário
+        request.body.senha,   // Senha do usuário
+        request.body.email  // E-mail do usuário
     );
    
     // Define a consulta SQL para inserir um novo usuário na tabela 'users'

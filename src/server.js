@@ -21,7 +21,7 @@ const swaggerOptions = {
             version: "1.0.0",
             description: "API CRUD para gerenciar tarefas",
         },
-        servers: [{ url: "http://localhost:3030"}],
+        servers: [{ url: "http://localhost:3000"}],
     },
     apis: [`${__dirname}/routes/*.js`], // caminho para as rotas
 };

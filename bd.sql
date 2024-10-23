@@ -1,14 +1,14 @@
 create database db_forum;
 
 use db_forum;
-create table tasks(
+create table forum(
 	id INT auto_increment primary key,
     title VARCHAR(255) not null,
     description text,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-select*from tasks;
+select*from forum;
 
 create table users(
 	id int not null auto_increment primary key,
@@ -21,4 +21,4 @@ create table users(
 
 select*from users;
 
-DROP DATABASE db_tasks;
+DROP DATABASE db_forum;
