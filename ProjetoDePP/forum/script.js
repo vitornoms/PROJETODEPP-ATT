@@ -67,9 +67,10 @@ document.addEventListener('DOMContentLoaded', function() {
             let deleteButton = document.createElement('button');
             deleteButton.classList.add('delete-button');
             deleteButton.textContent = '🗑️';
-            deleteButton.addEventListener('click', function() {
+            deleteButton.addEventListener('click', async function() {
                 postagensSalvas.splice(index, 1); // Remove a postagem do array
                 localStorage.setItem('postagensSalvas', JSON.stringify(postagensSalvas)); // Atualiza o localStorage
+                await deletarPostagem(postagem.id)
                 renderPostagens(); // Re-renderiza as postagens
             });
 
@@ -93,6 +94,20 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Postagem atualizada com sucesso!');
         } else {
             alert('Erro ao atualizar postagem.');
+        }
+    }
+
+    async function deletarPostagem(id) {
+        const response = await fetch(`http://localhost:3000/api/delete/task/${id}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            alert('Postagem deletada com sucesso!');
+        } else {
+            alert('Erro ao deletar postagem.');
         }
     }
 

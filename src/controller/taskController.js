@@ -59,8 +59,39 @@ async function updateTask(request, response) {
     });
 }
 
+async function deleteTask(request, response) {
+    const { id } = request.params;
+
+    const query = "DELETE FROM forum WHERE id = ?";
+
+    connection.query(query, [id], (err, results) => {
+        if (err) {
+            console.error("Erro ao atualizar tarefa:", err); // Log do erro
+            return response.status(500).json({
+                success: false,
+                message: "Erro interno ao atualizar a tarefa.",
+                sql: err
+            });
+        }
+
+        if (results && results.affectedRows > 0) {
+            response.status(200).json({
+                success: true,
+                message: "Tarefa atualizada com sucesso!"
+            });
+        } else {
+            response.status(404).json({
+                success: false,
+                message: "Tarefa não encontrada ou não atualizada.",
+                data: { id }
+            });
+        }
+    });
+}
+
 
 module.exports = {
     storeTask,
-    updateTask
+    updateTask,
+    deleteTask
 };
