@@ -89,9 +89,29 @@ async function deleteTask(request, response) {
     });
 }
 
+async function getTask(request, response) {
+    const query = "SELECT * FROM forum";
+
+    connection.query(query, (err, results) => {
+        if (err) {
+            console.error("Erro ao buscar tarefas:", err);
+            return response.status(500).json({
+                success: false,
+                message: "Erro ao buscar as tarefas.",
+                sql: err
+            });
+        }
+
+        response.status(200).json({
+            success: true,
+            data: results
+        });
+    });
+}
 
 module.exports = {
     storeTask,
     updateTask,
-    deleteTask
+    deleteTask,
+    getTask
 };
