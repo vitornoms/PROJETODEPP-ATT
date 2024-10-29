@@ -1,11 +1,14 @@
 create database db_forum;
 
 use db_forum;
+
 create table forum(
 	id INT auto_increment primary key,
     title VARCHAR(255) not null,
     description text,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    id_user int,
+    foreign key(id_user) references users(id)
 );
 
 select*from forum;
