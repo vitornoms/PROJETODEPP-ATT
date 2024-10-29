@@ -7,6 +7,8 @@ let button = document.getElementById("handleSubmit");
 
 document.addEventListener('DOMContentLoaded', function() {
 
+    
+
     button.onclick = async function() {
         let title = document.getElementById("title").value;
         let data = { title };

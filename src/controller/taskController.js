@@ -109,9 +109,31 @@ async function getTask(request, response) {
     });
 }
 
+async function getTaskById(request, response) {
+    const query = "SELECT * FROM forum WHERE id_user = ?";
+
+    connection.query(query, (err, results) => {
+        if (err) {
+            console.error("Erro ao buscar tarefas:", err);
+            return response.status(500).json({
+                success: false,
+                message: "Erro ao buscar as tarefas.",
+                sql: err
+            });
+        }
+
+        response.status(200).json({
+            success: true,
+            data: results
+        });
+    });
+}
+
+
 module.exports = {
     storeTask,
     updateTask,
     deleteTask,
-    getTask
+    getTask,
+    getTaskById
 };
