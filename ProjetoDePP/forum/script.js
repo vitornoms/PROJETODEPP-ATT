@@ -34,57 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    function renderPostagens() {
-        let postagensSalvas = JSON.parse(localStorage.getItem('postagensSalvas')) || [];
-        let messagesDiv = document.getElementById('messages');
-        messagesDiv.innerHTML = '';
-
-        if (postagensSalvas.length > 0) {
-            messagesDiv.style.display = 'block';
-        } else {
-            messagesDiv.style.display = 'none';
-        }
-
-        postagensSalvas.forEach(function(postagem, index) {
-            let messageItem = document.createElement('div');
-            messageItem.classList.add('message-item');
-
-            let p = document.createElement('p');
-            p.textContent = postagem.title;
-
-            // Botão de editar
-            let editButton = document.createElement('button');
-            editButton.classList.add('edit-button');
-            editButton.textContent = '✎';
-            editButton.addEventListener('click', async function() {
-                let novoTexto = prompt('Editar comentário:', postagem.title);
-                if (novoTexto && novoTexto.trim() !== '') {
-                    postagensSalvas[index].title = novoTexto; // Atualiza a postagem no array
-                    localStorage.setItem('postagensSalvas', JSON.stringify(postagensSalvas)); // Salva no localStorage
-                    await atualizarPostagem(postagem.id, novoTexto); // Atualiza no servidor
-                    renderPostagens(); // Re-renderiza as postagens
-                }
-            });
-
-            // Botão de deletar
-            let deleteButton = document.createElement('button');
-            deleteButton.classList.add('delete-button');
-            deleteButton.textContent = '🗑️';
-            deleteButton.addEventListener('click', async function() {
-                postagensSalvas.splice(index, 1); // Remove a postagem do array
-                localStorage.setItem('postagensSalvas', JSON.stringify(postagensSalvas)); // Atualiza o localStorage
-                await deletarPostagem(postagem.id)
-                renderPostagens(); // Re-renderiza as postagens
-            });
-
-            // Adiciona os botões e o texto à mensagem
-            messageItem.appendChild(p);
-            messageItem.appendChild(editButton);
-            messageItem.appendChild(deleteButton);
-            messagesDiv.appendChild(messageItem);
-        });
-    }
-
     async function atualizarPostagem(id, novoTexto) {
         const response = await fetch(`http://localhost:3000/api/update/task/${id}`, {
             method: 'PUT',
@@ -114,6 +63,87 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Renderiza postagens salvas ao carregar a página
-    renderPostagens();
+    async function getPostagens() {
+        const response = await fetch(`http://localhost:3000/api/task`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        });
+    
+        const result = await response.json();
+        console.log(result);
+    
+        const container = document.getElementById('postagens-container'); // Substitua pelo ID do seu container
+    
+        // Limpa o container antes de adicionar as postagens
+        container.innerHTML = '';
+    
+        // Armazena as postagens salvas no localStorage
+        let postagensSalvas = JSON.parse(localStorage.getItem('postagensSalvas')) || [];
+    
+        result.data.forEach((postagem, index) => {
+            let messageItem = document.createElement('div');
+            messageItem.classList.add('message-item');
+    
+            let p = document.createElement('p');
+            p.textContent = postagem.title;
+    
+            // Cria o botão de edição
+            let editButton = document.createElement('button');
+            editButton.classList.add('edit-button');
+            editButton.textContent = '✎';
+            editButton.addEventListener('click', async function() {
+                let novoTexto = prompt('Editar comentário:', postagem.title);
+                if (novoTexto && novoTexto.trim() !== '') {
+                    // Atualiza a postagem no array
+                    postagensSalvas[index] = { ...postagem, title: novoTexto };
+                    localStorage.setItem('postagensSalvas', JSON.stringify(postagensSalvas)); // Salva no localStorage
+                    await atualizarPostagem(postagem.id, novoTexto); // Atualiza no servidor
+                    renderPostagens(); // Re-renderiza as postagens
+                }
+            });
+    
+            // Cria o botão de deletar
+            let deleteButton = document.createElement('button');
+            deleteButton.classList.add('delete-button');
+            deleteButton.textContent = '🗑️';
+            deleteButton.addEventListener('click', async function() {
+                postagensSalvas.splice(index, 1); // Remove a postagem do array
+                localStorage.setItem('postagensSalvas', JSON.stringify(postagensSalvas)); // Atualiza o localStorage
+                await deletarPostagem(postagem.id); // Deleta a postagem do servidor
+                renderPostagens(); // Re-renderiza as postagens
+            });
+    
+            // Adiciona os elementos ao messageItem
+            messageItem.appendChild(p);
+            messageItem.appendChild(editButton);
+            messageItem.appendChild(deleteButton);
+            container.appendChild(messageItem);
+        });
+    }
+    
+    // Função para atualizar a postagem no servidor
+    async function atualizarPostagem(id, novoTexto) {
+        await fetch(`http://localhost:3000/api/update/task/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title: novoTexto }),
+        });
+    }
+    
+    // Função para deletar a postagem do servidor
+    async function deletarPostagem(id) {
+        await fetch(`http://localhost:3000/api/delete/task/${id}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+        });
+    }
+    
+    // Função para re-renderizar as postagens
+    function renderPostagens() {
+        getPostagens();
+    }
+
+    getPostagens();
+    
 });
+
