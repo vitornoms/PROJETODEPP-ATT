@@ -10,10 +10,9 @@ const { storeTask, updateTask, deleteTask, getTask } = require('../controller/ta
 
 // Definir uma rota para requisições HTTP POST. Quando uma requisição POST é feita para essa rota, a função 'storeTask' é chamada.
 
-router.post('/store/task', storeTask);
 /**
  * @swagger
- * /tasks/register:
+ * /store/task:
  *  post:
  *    summary: Cadastra uma nova tarefa
  *    responses:
@@ -26,11 +25,12 @@ router.post('/store/task', storeTask);
  *              items:
  *                type: object
  */
+router.post('/store/task', storeTask);
 
-router.put('/update/task/:id', updateTask);
+
 /**
  * @swagger
- * /tasks/put:
+ * /update/task/:id:
  *  put:
  *    summary: Atualiza uma tarefa pelo ID
  *    responses:
@@ -43,13 +43,13 @@ router.put('/update/task/:id', updateTask);
  *              items:
  *                type: object
  */
+router.put('/update/task/:id', updateTask);
 
-router.delete('/delete/task/:id', deleteTask);
 
 // Rota para atualizar uma tarefa existente (PUT).
 /**
  * @swagger
- * /tasks/delete:
+ * /delete/task/:id:
  *  delete:
  *    summary: Remove uma tarefa pelo ID
  *    responses:
@@ -62,11 +62,12 @@ router.delete('/delete/task/:id', deleteTask);
  *              items:
  *                type: object
  */
+router.delete('/delete/task/:id', deleteTask);
 
-router.get('/task', getTask);
+
 /**
  * @swagger
- * /tasks/list:
+ * /task:
  *  get:
  *    summary: Retorna todas as tarefas
  *    responses:
@@ -79,6 +80,8 @@ router.get('/task', getTask);
  *              items:
  *                type: object
  */
+router.get('/task', getTask);
+
 
 // Exportar a instância do 'router' para que ela possa ser usada em outros módulos da aplicação.
 module.exports = router;
