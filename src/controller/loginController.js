@@ -14,7 +14,7 @@ async function login(request, response) {
     connection.query(query, email, (err, results) => {
         console.log(email)  // Exibe o e-mail no console para depuração
         console.log(results)  // Exibe os resultados da consulta no console para depuração
-
+        
         // Verifica se a consulta retornou algum resultado
         if(results.length > 0) {
             // Extrai a senha fornecida na requisição
@@ -30,7 +30,7 @@ async function login(request, response) {
                     .json({
                         success: true,  // Indica sucesso na resposta
                         message: "Sucesso",  // Mensagem de sucesso
-                        data: results  // Inclui os dados retornados na resposta
+                        data: JSON.stringify(results)  // Inclui os dados retornados na resposta
                     })  
             } else {
                 // Se as senhas não coincidirem, envia uma resposta de erro

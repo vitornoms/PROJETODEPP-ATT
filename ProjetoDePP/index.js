@@ -10,6 +10,8 @@ if (localStorage.getItem("token") == null) { // Verifica se o token de autentica
 // logado.innerHTML = `Olá ${userLogado.nome}`;
 // Este código também está comentado. Ele procuraria um elemento com o ID "logado" na página e inseriria uma saudação com o nome do usuário logado.
 
+let iduser = localStorage.getItem('testeid')
+
 function sair() { // Define a função 'sair' que é responsável por realizar o logout do usuário.
   localStorage.removeItem("token"); // Remove o token de autenticação do localStorage, efetivamente deslogando o usuário.
   localStorage.removeItem("userLogado"); // Remove as informações do usuário logado do localStorage.

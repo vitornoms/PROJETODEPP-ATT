@@ -17,12 +17,12 @@ async function entrar() { // Define uma função assíncrona chamada 'entrar' pa
 
   const response = await fetch('http://localhost:3000/api/login', { // Envia uma requisição POST para a API de login.
     method: "POST", // Define o método da requisição como POST.
-    headers: {"Content-type": "application/json;charset=UTF-8"}, // Define o cabeçalho da requisição para indicar que o corpo da requisição está em formato JSON.
+    headers: {"Content-type": "application/json"}, // Define o cabeçalho da requisição para indicar que o corpo da requisição está em formato JSON.
     body: JSON.stringify(data) // Converte o objeto 'data' em uma string JSON e o envia como corpo da requisição.
   });
 
   let content = await response.json(); // Converte a resposta da API em um objeto JSON.
-
+  //a variavel content volta como string, fazer um split ou algo assim para buscar o id dessa string
   if (content.success){ // Verifica se o login foi bem-sucedido (baseado na resposta da API).
     localStorage.setItem('token', content.token) // Se o login for bem-sucedido, armazena o token recebido no localStorage.
     alert('Login realizado com sucesso') // Exibe um alerta informando que o login foi realizado com sucesso.

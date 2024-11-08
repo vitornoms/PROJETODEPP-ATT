@@ -3,6 +3,10 @@ if (localStorage.getItem("token") == null) {
     window.location.href = "../signin.html";
 }
 
+let user = localStorage.getItem('userdata')
+console.log(user);
+// para buscar o id == user.id
+
 let button = document.getElementById("handleSubmit");
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -11,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     button.onclick = async function() {
         let title = document.getElementById("title").value;
+        //criar uma variavel que receba o valor de user.id
         let data = { title };
 
         const response = await fetch('http://localhost:3000/api/store/task', {
@@ -81,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let postagensSalvas = JSON.parse(localStorage.getItem('postagensSalvas')) || [];
     
         result.data.forEach((postagem, index) => {
+            // criar esse if(postagem.id_user == user.id){
             let messageItem = document.createElement('div');
             messageItem.classList.add('message-item');
     
@@ -119,6 +125,15 @@ document.addEventListener('DOMContentLoaded', function() {
             messageItem.appendChild(deleteButton);
             container.appendChild(messageItem);
         });
+        // } else {
+        //     let messageItem = document.createElement('div');
+        //     messageItem.classList.add('message-item');
+    
+        //     let p = document.createElement('p');
+        //     p.textContent = postagem.title;
+        // messageItem.appendChild(p);
+        // container.appendChild(messageItem);
+        // } 
     }
     
     // Função para atualizar a postagem no servidor

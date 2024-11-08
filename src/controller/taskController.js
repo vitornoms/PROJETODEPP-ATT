@@ -5,7 +5,7 @@ async function storeTask(request, response) {
     const { title, description } = request.body;
     const params = [title, description];
 
-    const query = "INSERT INTO forum(title, description) VALUES(?, ?)";
+    const query = "INSERT INTO forum(title, description, id_user) VALUES(?, ?, ?)";
 
     connection.query(query, params, (err, results) => {
         if (err) {
