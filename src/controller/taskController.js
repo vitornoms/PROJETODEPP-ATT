@@ -2,10 +2,10 @@ const connection = require('../config/db');
 const dotenv = require('dotenv').config();
 
 async function storeTask(request, response) {
-    const { title, description } = request.body;
-    const params = [title, description];
+    const { title, userId } = request.body;
+    const params = [title, userId];
 
-    const query = "INSERT INTO forum(title, description, id_user) VALUES(?, ?, ?)";
+    const query = "INSERT INTO forum(title, id_user) VALUES(?, ?)";
 
     connection.query(query, params, (err, results) => {
         if (err) {
@@ -21,20 +21,20 @@ async function storeTask(request, response) {
         response.status(201).json({
             success: true,
             message: "Sucesso!",
-            data: { id: newTaskId, title, description }
+            data: { id: newTaskId, title }
         });
     });
 }
 
 async function updateTask(request, response) {
     const { id } = request.params;
-    const { title, description } = request.body;
+    const { title } = request.body;
 
-    console.log(`ID recebido: ${id}, Título: ${title}, Descrição: ${description}`); // Log para depuração
+    console.log(`ID recebido: ${id}, Título: ${title}`); // Log para depuração
 
-    const query = "UPDATE forum SET title = ?, description = ? WHERE id = ?";
+    const query = "UPDATE forum SET title = ? WHERE id = ?";
 
-    connection.query(query, [title, description, id], (err, results) => {
+    connection.query(query, [title, id], (err, results) => {
         if (err) {
             console.error("Erro ao atualizar tarefa:", err); // Log do erro
             return response.status(500).json({

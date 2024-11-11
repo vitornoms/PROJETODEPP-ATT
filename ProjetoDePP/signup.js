@@ -65,10 +65,16 @@ senha.addEventListener('keyup', () => {
   }
 })
 
+// Variável de controle para evitar múltiplos envios
+let isRegistering = false;
+
 // Função para realizar o cadastro do usuário
 async function cadastrar() {
+  if (isRegistering) return; // Se já está registrando, sai da função
+  isRegistering = true; // Marca como em execução
+
   // Verifica se todos os campos são válidos
-  if(validNome, validEmail, validSenha){
+  if(validNome && validEmail && validSenha){
     // Recupera a lista de usuários do localStorage ou inicializa uma nova lista
     let listaUser = JSON.parse(localStorage.getItem('listaUser') || '[]')
     
@@ -113,6 +119,8 @@ async function cadastrar() {
     msgSuccess.innerHTML = ''
     msgSuccess.setAttribute('style', 'display: none')
   }
+  
+  isRegistering = false; // Libera para novos cadastros após finalizar
 }
 
 // Adiciona um evento de clique ao botão de confirmação para chamar a função de cadastro

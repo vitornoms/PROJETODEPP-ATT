@@ -8,7 +8,7 @@ async function login(request, response) {
     const email = request.body.email;
  
     // Define a consulta SQL para selecionar o e-mail e a senha do usuário na tabela 'users'
-    const query = "SELECT id, email, password FROM users WHERE email = ?";
+    const query = "SELECT * FROM users WHERE email = ?";
  
     // Executa a consulta SQL utilizando o e-mail fornecido como parâmetro
     connection.query(query, email, (err, results) => {
@@ -39,7 +39,7 @@ async function login(request, response) {
                     .json({
                         success: false,  // Indica falha na resposta
                         message: "Senha incorreta",  // Mensagem de erro para senha incorreta
-                        data: results  // Inclui os dados retornados na resposta
+                        data: JSON.stringify(results)  // Inclui os dados retornados na resposta
                     })
             }
         } else {
