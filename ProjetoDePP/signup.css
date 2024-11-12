@@ -150,3 +150,20 @@ a:hover {
 .fa-eye:hover {
   color: #007bff; /* Blue eye icon on hover */
 }
+
+.login-link {
+  text-align: center;
+  font-size: 14px;
+  color: #007bff;
+  margin-top: 10px;
+}
+
+.login-link a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
